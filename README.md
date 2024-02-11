@@ -1,1 +1,2 @@
-# ECFDevOps-Act2
+# ECFDevOps-Act2 	
+Creation de l'application app.py + Dockerisation app.py
