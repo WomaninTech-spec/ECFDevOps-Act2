@@ -12,6 +12,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          # Utiliser Node.js 20
+          node-version: '20'
+          
+      # Utiliser Node.js 20 pour l'action setup-buildx-action
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          # Utiliser Node.js 20
+          node-version: '20'
 
       # Utiliser l'action setup-docker pour installer Docker
       - name: Set up Docker Buildx
