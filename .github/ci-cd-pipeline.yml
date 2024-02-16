@@ -34,6 +34,12 @@ jobs:
       # Étape pour arrêter et supprimer les conteneurs Docker après le déploiement
       - name: Clean up Docker containers
         run: |
-          docker stop <container_id>
-          docker rm <container_id>
+          docker stop a33208815fa5
+          docker rm a33208815fa5
+
+      # Étape pour nettoyer les ressources créées pendant le workflow
+      - name: Nettoyer les ressources
+        run: |
+        docker stop a33208815fa5  # Arrêter le conteneur Docker
+        docker rm a33208815fa5    # Supprimer le conteneur Docker
 
