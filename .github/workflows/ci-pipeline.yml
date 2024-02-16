@@ -15,7 +15,7 @@ jobs:
 
       # Utiliser l'action Docker CLI pour installer Docker
       - name: Install Docker
-        uses: docker/cli@v2
+        uses: docker/cli@v2.8.0
         with:
           version: '20.10.7'
           
