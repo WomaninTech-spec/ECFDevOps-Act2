@@ -1,5 +1,3 @@
-#ci-cd-pipeline.yml
-@
 name: CI-CD Pipeline
 
 on:
@@ -32,4 +30,10 @@ jobs:
       - name: Deploy app to Docker container
         run: |
           docker run -d -p 5000:5000 mon_image
+
+      # Étape pour arrêter et supprimer les conteneurs Docker après le déploiement
+      - name: Clean up Docker containers
+        run: |
+          docker stop <container_id>
+          docker rm <container_id>
 
