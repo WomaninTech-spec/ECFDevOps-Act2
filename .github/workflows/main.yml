@@ -1,0 +1,23 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_test_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Utiliser l'action Docker CLI pour installer Docker
+      - name: Install Docker
+        uses: docker/cli@v2
+        with:
+          version: '20.10.7'
+
+      # Étapes supplémentaires pour construire, tester et déployer votre application
+      ...
