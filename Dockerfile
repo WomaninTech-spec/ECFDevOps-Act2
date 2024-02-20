@@ -3,7 +3,7 @@ FROM python:3.8-slim
 
 # Mettez à jour les paquets et installez les dépendances nécessaires
 RUN apt-get update \
-    && apt-get install -y openjdk-11-jre-headless \
+    && apt-get install -y openjdk-21-jdk \
     && apt-get clean
 
 # Copiez les fichiers de votre application dans le conteneur
