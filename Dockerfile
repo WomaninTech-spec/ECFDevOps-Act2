@@ -1,16 +1,11 @@
-# Use a base image that includes Python
-FROM python:3.8-slim
+# Base Image OpenJDK 11 JRE Slim as Spark needs OpenJDK 8+
+FROM openjdk:11-jre-slim
 
-# Set environment variables for Corretto version and installation path
-ENV CORRETTO_VERSION=11.0.16.8.1
-ENV JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto
-
-# Install necessary dependencies and Corretto
-RUN apt-get update \
-    && apt-get install -y wget \
-    && apt-get install -y java-11-amazon-corretto-jdk \
-    && apt-get install -y gnupg \
-    && apt-get clean
+# Install Python, wget, and procps
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip wget procps && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy your application files into the container
 WORKDIR /app
