@@ -12,6 +12,9 @@ RUN apt-get update \
     && echo 'deb https://apt.corretto.aws stable main' | tee /etc/apt/sources.list.d/corretto.list \
     && apt-get update \
     && apt-get install -y java-11-amazon-corretto-jdk \
+    && apt-get install -y gnupg \
+    && apt-get install -y gnupg2 \
+    && apt-get install -y gnupg1 \
     && apt-get clean
 
 # Copy your application files into the container
