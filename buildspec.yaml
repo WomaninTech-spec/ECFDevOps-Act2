@@ -1,27 +1,34 @@
-name: CI
+version: 0.2
 
-on:
-  push:
-    branches: [ main ]
+env:
+  variables:
+    ECR_REPOSITORY_URI: "040336645459.dkr.ecr.eu-central-1.amazonaws.com/pysparkdockeract2"
+    AWS_DEFAULT_REGION: "eu-central-1"
+    IMAGE_REPO_NAME: "pyspark-ecf-act2"
+    IMAGE_TAG: "latest"
 
-jobs:
+phases:
+  install:
+    commands:
+      - echo Installing dependencies and running tests...
+      - pip install -r requirements.txt  # Assuming your tests run in the build environment directly
+      - python -m pytest tests/
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY_URI
   build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $ECR_REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push $ECR_REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $ECR_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run tests
-      run: pytest
+artifacts:
+  files:
+    - imagedefinitions.json
