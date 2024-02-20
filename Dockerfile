@@ -8,13 +8,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto
 # Install necessary dependencies and Corretto
 RUN apt-get update \
     && apt-get install -y wget \
-    && wget -O- https://apt.corretto.aws/corretto.key | apt-key add - \
-    && echo 'deb https://apt.corretto.aws stable main' | tee /etc/apt/sources.list.d/corretto.list \
-    && apt-get update \
     && apt-get install -y java-11-amazon-corretto-jdk \
     && apt-get install -y gnupg \
-    && apt-get install -y gnupg2 \
-    && apt-get install -y gnupg1 \
     && apt-get clean
 
 # Copy your application files into the container
