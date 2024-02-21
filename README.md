@@ -9,7 +9,7 @@
 5. [FAQs](#faqs)
 
 
-
+## Objectif : 
 1. Créez une application Python (hello word) avec Pyspark intégré.
 2. Dockerizez votre application Python.
 3. Écrivez le script qui build/test le Python et déployez le dans un container de votre
@@ -24,7 +24,7 @@ choix => Utilisation de Dockerfile
 3. [Application FastAPI](#application-fastapi)
 4. [Configuration de construction](#configuration-de-construction)
 5. [Dockerfile](#dockerfile)
-6. [Ci pipeline github ] (#cipipelinegithub)
+6. [Ci pipeline github](#cipipelinegithub)
 
 ---
 
