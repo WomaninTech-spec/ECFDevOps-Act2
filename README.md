@@ -3,7 +3,7 @@
 ### Activité type 2 : Déploiement d’une application en continu
 ## Table of Contents
 1. [Introduction](#Introduction)
-2. [Flask App](#Flask App)
+2. [Flask App](#FlaskApp)
 3. [Construction Projet](#constructionprojet)
 4. [Collaboration](#collaboration)
 5. [FAQs](#faqs)
